@@ -7,7 +7,7 @@ This repo contains the code for my term paper in the module Methods and Applicat
 tba
 ## TODO:
 ### Data collection and preparation
-- [ ] download data from [AcousticBrainz](https://acousticbrainz.org) (very large amounts of data... how to store?)
+- [ ] download data from [AcousticBrainz](https://acousticbrainz.org) (very large amounts of data, possibly in 2-3 TB range... how to store?)
 - [ ] extract relevant metadata and map to metadata from [MusicBrainz](https://musicbrainz.org) (can partially be re-used from related repo)
 - [ ] calculate metadata mean of records belonging to a release to make results based on album rather than record (makes it comparable to results from album cover classifications)
 ### Processing and analysis
