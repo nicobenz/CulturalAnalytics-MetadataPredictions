@@ -8,6 +8,9 @@ For my analysis I use music/acoustic metadata of records crawled from [AcousticB
 In the related repo (linked above) I will pursue a similar project on album cover art. 
 The results of both projects are supposed to be comparable, giving insight on two different approaches to the same research question.
 
+## Working title
+Genre-Defining Features in Musical Metadata: Investigating Common Mood Patterns Across Subgenres Using Machine Learning Classifiers
+
 ## Outline and research questions
 In my research paper, I aim to explore the classification of musical subgenres through their metadata using machine learning algorithms. 
 Music genres typically encompass various subgenres, each characterized by unique yet subtly interconnected features that align them with their overarching genre. 
@@ -58,9 +61,6 @@ High level information:
 - ...
 
 (High level information was computed from low level information by AcousticBrainz using [Essentia](https://essentia.upf.edu/index.html))
-
-## Working title
-Genre-Defining Features in Musical Metadata: Unveiling Common Patterns Across Subgenres with Machine Learning Classifiers
 
 ## TODO:
 ### Data collection and preparation
