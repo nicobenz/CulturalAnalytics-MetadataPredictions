@@ -1,7 +1,13 @@
 # CulturalAnalytics-MetadataPredictions
 (related repo: [CoverPredictions](https://github.com/nicobenz/CulturalAnalytics-CoverPredictions))
 ## What to expect in this repo
-This repo contains the code for my term paper in the module Methods and Applications in Digital Humanities of the MSc Digital Humanities at Leipzig University. Here I will explore classifier training using metadata for the classification of genres and subgenres in music. For my analysis I use music/acoustic metadata of records crawled from [AcousticBrainz](https://acousticbrainz.org) along with metadata on artists, releases, genres and subgenres from [MusicBrainz](https://musicbrainz.org).
+This repo contains the code for my term paper in the module Methods and Applications in Digital Humanities of the MSc Digital Humanities at Leipzig University. 
+Here I will explore classifier training using metadata for the classification of genres and subgenres in music. 
+For my analysis I use music/acoustic metadata of records crawled from [AcousticBrainz](https://acousticbrainz.org) along with metadata on artists, releases, genres and subgenres from [MusicBrainz](https://musicbrainz.org). 
+In the related repo (linked above) I will pursue a similar project on album cover art. 
+The results of both projects are supposed to be comparable, giving insight on two different views of the same research question.
+
+## Outline and research questions
 
 ## Working title
 tba
