@@ -19,8 +19,8 @@ More importantly, the rate of false positives, especially between subgenres of t
 For instance, I anticipate a higher rate of false positives within subgenres of Metal compared to false positives between a Metal subgenre and a Hip Hop subgenre. 
 If observed, this pattern could suggest the presence of distinct, genre-specific characteristics embedded in the musical metadata.
 
-However, I haven't yet decided on the type of metadats used for my approach. 
-Here is a partial list of available metadata on [AcousticBrainz](https://acousticbrainz.org):
+Currently I haven't yet decided on the type of metadata used for my approach, but I'm leaning towards a different combination of moods. 
+However, here is a list of available metadata on [AcousticBrainz](https://acousticbrainz.org):
 
 Low level information:
 - general metadata
