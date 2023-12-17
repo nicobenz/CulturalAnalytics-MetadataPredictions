@@ -46,7 +46,7 @@ High level information:
 - gender
 - different moods as degrees
   - acoustic
-  - agressive
+  - aggressive
   - electronic
   - happy
   - party
