@@ -57,7 +57,7 @@ High level information:
 - instrumental (probability value)
 - ...
 
-(High level information was computed from low level information by Acousticbrainz using [Essentia](https://essentia.upf.edu/index.html))
+(High level information was computed from low level information by AcousticBrainz using [Essentia](https://essentia.upf.edu/index.html))
 
 ## Working title
 Genre-Defining Features in Musical Metadata: Unveiling Common Patterns Across Subgenres with Machine Learning Classifiers
