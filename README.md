@@ -6,7 +6,7 @@ Here I will explore classifier training using metadata for the classification of
 For my analysis I use music/acoustic metadata of records crawled from [AcousticBrainz](https://acousticbrainz.org) along with metadata on artists, releases, genres and subgenres from [MusicBrainz](https://musicbrainz.org). 
 
 In the related repo (linked above) I will pursue a similar project on album cover art. 
-The results of both projects are supposed to be comparable, giving insight on two different views of the same research question.
+The results of both projects are supposed to be comparable, giving insight on two different approaches to the same research question.
 
 ## Outline and research questions
 
