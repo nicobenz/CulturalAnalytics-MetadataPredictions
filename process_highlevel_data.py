@@ -25,7 +25,6 @@ for first_level in os.listdir(data_path):
                     rec_id_path = f"{data_path}/{first_level}/{second_level}/{rec_id}"
                     record_ids.append(rec_id_path)
 
-count = 0
 mapped_ids = {}
 for rec_id in record_ids:
     with open(rec_id, "r") as f:
@@ -40,6 +39,4 @@ for rec_id in record_ids:
             else:
                 mapped_ids[rel_id] = [rec_id]
     else:
-        count += 1
-
-print(count, len(record_ids))
+        pass

@@ -114,18 +114,19 @@ def extract_moods():
                 if highlevel is not None:
                     mood_data = highlevel.get(mood, None)
                     if mood_data is not None:
-                        mood_value = mood_data.get("probability", None)
+                        short_mood = mood.split("_")[1]
+                        mood_value = mood_data.get("all", {}).get(short_mood, None)
                     else:
                         mood_value = None
                 else:
                     mood_value = None
 
-                relevant_contents["moods"][mood.split("_")[1]] = mood_value
+                relevant_contents["moods"][short_mood] = mood_value
 
             f_out.write(json.dumps({file: relevant_contents}) + "\n")
 
 
-def merge_moods():
+def aggregate_moods():
     file_path = "/Volumes/Data/acousticbrainz/data_collection.jsonl"
     file_size = os.path.getsize(file_path)
     with open(file_path) as f:
@@ -134,8 +135,12 @@ def merge_moods():
         for line in f:
             progress_bar.update(len(line.encode('utf-8')))
             content = json.loads(line)
+            print(content)
             for key in content:
                 if all(value is not None for value in content[key]["moods"].values()):
+                    high_vals = [value for value in content[key]["moods"].values() if value > 1.0]
+                    if high_vals:
+                        print(f"High values found: {high_vals}")
                     album_id = content[key]["metadata"]["musicbrainz_albumid"]
                     artist_id = content[key]["metadata"]["musicbrainz_artistid"]
                     if album_id and is_valid_uuid(album_id):
@@ -148,6 +153,13 @@ def merge_moods():
                                 data_dict[mood] = [content[key]["moods"][mood]]
                             merged_data[album_id] = data_dict
         progress_bar.close()
+    with open("/Volumes/Data/acousticbrainz/aggregated_moods.json", "w") as f:
+        json.dump(merged_data, f, indent=4)
+
+
+def merge_moods():
+    with open("/Volumes/Data/acousticbrainz/aggregated_moods.json") as f:
+        merged_data = json.load(f)
     for key in tqdm(merged_data, desc="Calculating mean values"):
         for inner_key in merged_data[key]:
             if inner_key == "artist":
@@ -409,15 +421,16 @@ def save_genre_mapping():
         json.dump(mapping, f)
 
 
+def main():
+    extract_moods()
+    aggregate_moods()
+    merge_moods()
+    combine_datasets()
+    extract_genre_data()
+    add_genre_data()
+    process_genre_data()
+    plot_data()
+    sample_dataset()
+    save_genre_mapping()
 
-
-
-#merge_moods()
-#time.sleep(2)
-#combine_datasets()
-#extract_genre_data()
-#add_genre_data()
-#process_genre_data()
-#plot_data()
-sample_dataset()
-save_genre_mapping()
+main()

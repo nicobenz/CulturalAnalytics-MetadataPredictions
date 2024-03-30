@@ -6,7 +6,7 @@ import json
 import plotly.offline as py_offline
 
 
-def network_3d_plotly(confusion_matrix, subgenre_to_genre, subgenre_order):
+def network_3d_plotly(confusion_matrix, subgenre_to_genre, subgenre_order, model_name):
     num_groups = len(set(subgenre_to_genre.values()))
     subgenre_to_genre = {id: subgenre_to_genre[id] for id in subgenre_order}
     # Generate distinct colors for each top-level genre
@@ -41,15 +41,27 @@ def network_3d_plotly(confusion_matrix, subgenre_to_genre, subgenre_order):
         for tgt_id in subgenre_order:
             if src_id != tgt_id:
                 i, j = id_to_index[src_id], id_to_index[tgt_id]
-                predictions = confusion_matrix[i, j]
-                src_true_positives = true_positives[i]  # true positives for src_id
-                if src_true_positives != 0:  # Ensure no division by zero
-                    ratio = predictions / src_true_positives
-                    G.add_edge(src_id, tgt_id, weight=ratio)
+                # Calculate false positives for both directions
+                fp_src_to_tgt = confusion_matrix[i, j]
+                fp_tgt_to_src = confusion_matrix[j, i]
 
-                    ratio_dict = {
-                        f"{src_id}|{tgt_id}": ratio
-                    }
+                # True positives for both src and tgt
+                src_true_positives = true_positives[i]
+                tgt_true_positives = true_positives[j]
+
+                # Ensure no division by zero
+                if src_true_positives != 0 and tgt_true_positives != 0:
+                    ratio_src_to_tgt = fp_src_to_tgt / src_true_positives
+                    ratio_tgt_to_src = fp_tgt_to_src / tgt_true_positives
+
+                    # Calculate the mean ratio for bidirectionality
+                    mean_ratio = (ratio_src_to_tgt + ratio_tgt_to_src) / 2
+
+                    # Add edge with mean ratio as weight
+                    G.add_edge(src_id, tgt_id, weight=mean_ratio)
+
+                    # Store the mean ratio in a dictionary
+                    ratio_dict = {f"{src_id}|{tgt_id}": mean_ratio}
                     save_ratios.append(ratio_dict)
 
     # Use spring layout for positioning
@@ -78,7 +90,7 @@ def network_3d_plotly(confusion_matrix, subgenre_to_genre, subgenre_order):
     # Plot configuration
     fig = go.Figure(data=traces)
     fig.update_layout(
-        title="3D Network Graph of Confusion Matrix",
+        title="",
         showlegend=True,
         scene=dict(
             xaxis=dict(
@@ -97,9 +109,9 @@ def network_3d_plotly(confusion_matrix, subgenre_to_genre, subgenre_order):
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
     )
-    py_offline.plot(fig, filename='data/mood_plot.html', auto_open=True)
-    with open("data/mood_ratios.json", "w") as f:
-        json.dump(save_ratios, f)
+    py_offline.plot(fig, filename=f'plots/mood/{model_name}/index.html', auto_open=False)
+    with open(f"results/{model_name}_cover_ratios.json", "w") as f:
+        json.dump(save_ratios, f, indent=4, sort_keys=True)
 
 
 """
